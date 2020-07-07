@@ -11,17 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
-Auth::routes();
+Auth::routes(['register' => false, 'verify' => false]);
 
-Route::get('register', function() {
-    return redirect(route('home'));
-});
+Route::resources([
+    'posts' => 'BlogController',
+    'products' => 'ProductController',
+]);
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-    
+    Route::get('/', function() {
+        return "user";
+    });
 });
 
