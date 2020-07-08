@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Hours;
+use App\BlogPost;
+use App\GalleryImage;
 
 class HomeController extends Controller
 {
@@ -15,6 +17,8 @@ class HomeController extends Controller
     public function index()
     {
         $hours = Hours::all();
-        return view('home', ['hours' => $hours]);
+        $posts = BlogPost::orderBy('created_at', 'desc')->paginate(3);
+        $gallery = GalleryImage::paginate(9);
+        return view('home', ['hours' => $hours, 'posts' => $posts, 'gallery' => $gallery]);
     }
 }

@@ -8,3 +8,48 @@ h1 {
     font-weight: 600;
     font-size: 56px;
 }
+
+.mast img{
+    width: 75%;
+}
+
+@media(min-width:768px) {
+    #mastMobile {
+        display:none;
+    }
+}
+@media(max-width:768px) {
+    #mastMain {
+        display:none;
+    }
+
+    .mast img {
+        width:100%;
+    }
+
+    #spacer {
+        display: none;
+    }
+
+    #pageTitle {
+        margin-top: 20px !important;
+    }
+}
+
+.text-gray {
+    color: #888;
+}
+
+.sectionheader hr {
+    width: 70px;
+    border-top: 2px solid #321325;
+}
+
+.pagination {
+    clear:both;
+}
+
+.post-content {
+    margin:auto;
+    width: 75%;
+}

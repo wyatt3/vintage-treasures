@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class ProductController extends Controller
 {
@@ -11,9 +12,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return "test";
+        $products = Product::orderBy($request['order'] ?? 'created_at', $request['by'] ?? 'desc')->paginate(9);
+        return view('shop.home', ['products' => $products]);
     }
 
     /**

@@ -15,10 +15,9 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes(['register' => false, 'verify' => false]);
 
-Route::resources([
-    'posts' => 'BlogController',
-    'products' => 'ProductController',
-]);
+Route::get('posts/{id}', 'BlogController@show')->name('post.show');
+
+Route::resource('products', 'ProductController');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('/', function() {

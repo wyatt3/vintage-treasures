@@ -43,41 +43,14 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item px-2">
-                                <a class="nav-link" href="" data-toggle="modal" data-target="#quoteModal"><i class="foundicon-mail"></i>&nbsp;&nbsp;Get A Quote</a>
-                            </li>
-                            <li class="nav-item px-2">
-                                <a class="nav-link" href="tel:+14353749436"><i class="foundicon-phone"></i>&nbsp;&nbsp;Call Now</a>
-                            </li>
-                            <li class="nav-item px-2">
-                                <a class="nav-link" href="https://www.google.com/maps/dir//Vintage+Treasures/data=!4m8!4m7!1m0!1m5!1m1!1s0x87547e3fc16366a3:0xca9f875ddf2fdffa!2m2!1d-111.83540939999999!2d41.7321281" target="_blank"><i class="foundicon-location"></i>&nbsp;&nbsp;Get Directions</a>
-                            </li>
-                            <li class="nav-item px-2">
-                                <a class="nav-link" href="{{ route('products.index') }}"><i class="foundicon-cart"></i>&nbsp;&nbsp;Shop</a>
-                            </li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right bg-primary" aria-labelledby="navbarDropdown">
-                                    <a class="nav-link text-light pl-3" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+                                <a class="nav-link" href="{{ route('products.index') }}"><i class="foundicon-cart"></i>&nbsp;&nbsp;Shopping Cart</a>
                             </li>
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-
+        <div class="pt-5 pb-4"></div>
         <main class="py-4 text-dark">
             @yield('content')
         </main>

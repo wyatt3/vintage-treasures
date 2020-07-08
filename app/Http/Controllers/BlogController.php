@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\BlogPost;
 
 use Illuminate\Http\Request;
 
@@ -45,7 +46,8 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = BlogPost::find($id);
+        return view('post.show', ['post' => $post]);
     }
 
     /**
