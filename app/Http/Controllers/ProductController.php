@@ -14,8 +14,17 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::orderBy($request['order'] ?? 'created_at', $request['by'] ?? 'desc')->paginate(9);
-        return view('shop.home', ['products' => $products]);
+        if($request['order'] == 'lth' || $request['order'] == 'htl') {
+            $order = 'price';
+        } else if($request['order'] == 'alphabetical') {
+            $order = 'title';
+        }
+        
+        if($request['order'] == 'lth' || $request['order'] == 'alphabetical') {     
+            $by = 'asc';
+        }
+        $products = Product::orderBy($order ?? 'created_at', $by ?? 'desc')->paginate(9);
+        return view('shop.home', ['products' => $products, 'order' => $request['order']]);
     }
 
     /**
@@ -45,9 +54,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($product)
     {
-        //
+        $product = Product::find($product);
+        return view('shop.show', ['product' => $product]);
     }
 
     /**

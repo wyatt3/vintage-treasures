@@ -28,16 +28,6 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -47,7 +37,6 @@
                             </li>
                         @endguest
                     </ul>
-                </div>
             </div>
         </nav>
         <div class="pt-5 pb-4"></div>
@@ -69,4 +58,5 @@
 <!-- Custom Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/shop.js') }}"></script>
 </html>

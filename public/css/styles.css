@@ -45,6 +45,10 @@ h1 {
     border-top: 2px solid #321325;
 }
 
+p {
+    color: #321325;
+}
+
 .pagination {
     clear:both;
 }
@@ -52,4 +56,16 @@ h1 {
 .post-content {
     margin:auto;
     width: 75%;
+}
+
+.error {
+    color: #ff0000;
+}
+
+.form-input-light {
+    background-color: #c2bad8;
+    color: #321325;
+}
+.form-input-light:focus{
+    background-color: #b5aec7;
 }

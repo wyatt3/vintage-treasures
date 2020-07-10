@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('imageName');
             $table->double('price');
             $table->text('description');
+            $table->boolean('sold');
         });
     }
 

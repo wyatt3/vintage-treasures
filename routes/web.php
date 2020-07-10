@@ -17,11 +17,13 @@ Auth::routes(['register' => false, 'verify' => false]);
 
 Route::get('posts/{id}', 'BlogController@show')->name('post.show');
 
+Route::post('getQuote', 'HomeController@getQuote')->name('quote');
+
 Route::resource('products', 'ProductController');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('/', function() {
         return "user";
-    });
+    })->name('admin');
 });
 

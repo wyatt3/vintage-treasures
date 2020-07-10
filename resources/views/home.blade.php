@@ -21,11 +21,14 @@
 </div>
 <div id="spacer" class="my-5"></div>
 <div class="container">
+    @if(Session('message'))
+    <div class="alert alert-success">Message Sent! We'll get back to you as soon as we can!</div>
+    @endif
     <div class="row">
         <div id="pageTitle" class="col-12 mt-5 text-center">
             <h1>Vintage Treasures</h1>
             <p class="mt-3 mb-1">Antique Store in Logan, UT</p>
-            <p id="open" class="mt-0">Opening at 10:30 A.M.</p>
+            <p id="open" class="mt-0"></p>
             <a class="btn btn-dark text-light" data-toggle="modal" data-target="#quoteModal"><i class="foundicon-mail"></i>&nbsp;Get Quote</a>
         </div>
     </div>
@@ -44,8 +47,8 @@
         <div class="col-12 col-md-4 mb-2">
             <a class="text-decoration-none" href="{{ route('post.show', ['id' => $post->id]) }}">
             <div class="card">
+                <div class="card-img-top"><img class="rounded" src="{{ asset('img/posts/' . $post->imgName) }}" width="100%"></div>
                 <div class="card-body text-center">
-                    <img class="rounded" src="{{ asset('img/posts/' . $post->imgName) }}" width="100%">
                     <p class="mt-2 mb-0 text-left text-dark"><span class="text-gray">Posted on <?php echo date_format($post->created_at, 'M jS, Y') ?></span><br>{{ $post->content }}</p>
                 </div>
             </div>
@@ -97,25 +100,35 @@
     </div>
 </div>
 
-<!-- Quote Modal -->
+<!------------------------- Quote Modal ------------------------------------>
 <div class="modal fade" id="quoteModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-light text-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Get A Quote</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-group mb-0" name="quoteValidate" action="{{ route('quote') }}" method="post">
+                    @csrf
+                    <label for="name">Full Name:</label>
+                    <input class="form-control mb-1 form-input-light" type="text" id="name" name="name"><br>
+                    <label for="phoneNum">Phone Number:</label>
+                    <input class="form-control mb-1 form-input-light" type="text" id="phoneNum" name="phoneNum"><br>
+                    <label for="email">Email:</label>
+                    <input class="form-control mb-1 form-input-light" type="text" id="email" name="email"><br>
+                    <label for="message">Message:</label>
+                    <textarea rows="4" class="form-control form-input-light" id="message" name="message"></textarea>
+                    <p class="text-gray mt-3 mb-0">Be sure to avoid including any sensitive information that you don't want to share with this business.</p>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="Send Message">
+                    </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 @endsection
