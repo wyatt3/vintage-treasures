@@ -73,3 +73,4 @@ $('form[name="quoteValidate"]').validate({
         message: 'Please enter a message<br>',
     }
 });
+

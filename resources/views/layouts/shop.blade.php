@@ -20,6 +20,17 @@
     <link href="{{ asset('css/mytheme.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/general_foundicons.css') }}" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Custom Scripts -->
+    <script src="{{ asset('js/jquery.validate.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/shop.js') }}"></script>
 </head>
 <body>
     <div id="app">
@@ -33,7 +44,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item px-2">
-                                <a class="nav-link" href="{{ route('products.index') }}"><i class="foundicon-cart"></i>&nbsp;&nbsp;Shopping Cart</a>
+                                <a class="nav-link" href="{{ route('products.index') }}"><i class="foundicon-cart"></i>&nbsp;&nbsp;Shopping Cart <span class="cartAmt"></span></a>
                             </li>
                         @endguest
                     </ul>
@@ -49,14 +60,4 @@
         </footer>
     </div>
 </body>
-
-<!-- Bootstrap JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-<!-- Custom Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('js/shop.js') }}"></script>
 </html>

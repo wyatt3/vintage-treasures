@@ -39,63 +39,80 @@
 
 
 <!-------------------------- UPDATES ------------------------->
-
-<div class="sectionheader my-2 py-2 text-center" id="updates"><hr><h4>UPDATES<h4></div>
-<div class="container">
-    <div class="row mb-2">
-        @foreach($posts as $post)
-        <div class="col-12 col-md-4 mb-2">
-            <a class="text-decoration-none" href="{{ route('post.show', ['id' => $post->id]) }}">
-            <div class="card">
-                <div class="card-img-top"><img class="rounded" src="{{ asset('img/posts/' . $post->imgName) }}" width="100%"></div>
-                <div class="card-body text-center">
-                    <p class="mt-2 mb-0 text-left text-dark"><span class="text-gray">Posted on <?php echo date_format($post->created_at, 'M jS, Y') ?></span><br>{{ $post->content }}</p>
+<div class="bg-overlay pb-3">
+    <div class="sectionheader my-2 py-2 text-center" id="updates"><hr><h4>UPDATES<h4></div>
+    <div class="container">
+        <div class="row mb-2">
+            @foreach($posts as $post)
+            <div class="col-12 col-md-4 mb-2">
+                <a class="text-decoration-none" href="{{ route('post.show', ['id' => $post->id]) }}">
+                <div class="card bg-light">
+                    <div class="card-img-top"><img class="rounded" src="{{ asset('img/posts/' . $post->imgName) }}" width="100%"></div>
+                    <div class="card-body text-center">
+                        <p class="mt-2 mb-0 text-left text-dark"><span class="text-gray">Posted on <?php echo date_format($post->created_at, 'M jS, Y') ?></span><br>{{ $post->content }}</p>
+                    </div>
                 </div>
+                </a>
             </div>
-            </a>
+            @endforeach
         </div>
-        @endforeach
+        {{$posts->fragment('updates')->links()}}
     </div>
-    {{$posts->fragment('updates')->links()}}
 </div>
 <!-------------------------- GALLERY ------------------------->
 <div class="sectionheader my-2 py-2 text-center" id="gallery"><hr><h4>GALLERY</h4></div>
 <div class="container">
     <div class="row mb-3">
         @foreach($gallery as $image)
-        <div class="col-12 col-lg-6 col-xl-4 mb-3"><img src="{{asset($image->imagePath()) }}" width="100%"></div>
+        <div class="col-12 col-lg-6 col-xl-4 mb-3"><a data-toggle="modal" data-target="#<?php echo "galleryModal" . $image->id ?>"><img class="rounded galleryImage" src="{{asset($image->imagePath()) }}" width="100%"></a></div>
+        <!------------- Gallery Modal ---------------------->
+        <div class="modal fade" id="<?php echo "galleryModal" . $image->id ?>" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content bg-light text-dark">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <img class="rounded" src="{{asset($image->imagePath()) }}" width="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
         @endforeach
     </div>
     {{$gallery->fragment('gallery')->links()}}
 </div>
 
+
 <!-------------------------- FOOTER ------------------------->
-<div class="sectionheader my-2 py-2 text-center" id="contact"><hr><h4>CONTACT<h4></div>
-<div class="container">
-    <div class="row text-center">
-        <div class="col-12 col-lg-4 my-3">
-            <h3>Contact</h3>
-            <a class="mb-2 btn btn-dark text-light contactButton" href="tel:4353749436"><i class="foundicon-phone"></i>&nbsp;Call Now</a><br>
-            <a class="btn btn-dark text-light contactButton" href="mailto:vintagetreasures@gmail.com"><i class="foundicon-mail"></i>&nbsp;Email Us</a>
-        </div>
-        <div class="col-12 col-lg-4 my-3">
-            <h3>Address</h3>
-            <p>37 North Main Street<br>Logan, UT 84321<br>United States</p>
-            <a class="btn btn-dark text-light" href="https://www.google.com/maps/dir//Vintage+Treasures/data=!4m8!4m7!1m0!1m5!1m1!1s0x87547e3fc16366a3:0xca9f875ddf2fdffa!2m2!1d-111.83540939999999!2d41.7321281" target="_blank"><i class="foundicon-location"></i>&nbsp;Get Directions</a>
-        </div>
-        <div class="col-12 col-lg-4 mt-3">
-            <h3>Store Hours</h3>
-            @foreach($hours as $hour)
-                <div class="row text-left">
-                    <div class="col-2"></div>
-                    <div class="col-4">
-                    {{ $hour->day }}:
+<div class="bg-overlay">
+    <div class="sectionheader my-2 py-2 text-center" id="contact"><hr><h4>MORE INFO<h4></div>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-12 col-lg-4 my-3">
+                <h3>Contact</h3>
+                <a class="mb-2 btn btn-dark text-light contactButton" href="tel:4353749436"><i class="foundicon-phone"></i>&nbsp;Call Now</a><br>
+                <a class="btn btn-dark text-light contactButton" href="mailto:vintagetreasures@gmail.com"><i class="foundicon-mail"></i>&nbsp;Email Us</a>
+            </div>
+            <div class="col-12 col-lg-4 my-3">
+                <h3>Address</h3>
+                <p>37 North Main Street<br>Logan, UT 84321<br>United States</p>
+                <a class="btn btn-dark text-light" href="https://www.google.com/maps/dir//Vintage+Treasures/data=!4m8!4m7!1m0!1m5!1m1!1s0x87547e3fc16366a3:0xca9f875ddf2fdffa!2m2!1d-111.83540939999999!2d41.7321281" target="_blank"><i class="foundicon-location"></i>&nbsp;Get Directions</a>
+            </div>
+            <div class="col-12 col-lg-4 mt-3">
+                <h3>Store Hours</h3>
+                @foreach($hours as $hour)
+                    <div class="row text-left">
+                        <div class="col-2"></div>
+                        <div class="col-4">
+                        {{ $hour->day }}:
+                        </div>
+                        <div class="col-6">
+                            <p> <?php if($hour->isOpen) { echo $hour->openTime . " - " . $hour->closeTime;} else { echo "Closed";} ?></p>
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <p> <?php if($hour->isOpen) { echo $hour->openTime . " - " . $hour->closeTime;} else { echo "Closed";} ?></p>
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
 </div>

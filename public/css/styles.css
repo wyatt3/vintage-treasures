@@ -1,5 +1,7 @@
 body {
     font-family: 'Comfortaa', cursive;
+    background-image: url('../img/tile.jpg');
+    background-attachment: fixed;
 }
 
 h1 {
@@ -68,4 +70,12 @@ p {
 }
 .form-input-light:focus{
     background-color: #b5aec7;
+}
+
+.bg-overlay {
+    background-color: rgba(208, 200, 228, 0.55);
+}
+
+.galleryImage:hover{
+    cursor: pointer;
 }

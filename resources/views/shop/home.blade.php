@@ -17,6 +17,7 @@
             <option <?php if($order == 'lth') { echo 'selected'; } ?> value="lth">Price: Low to High</option>
         </select>
     </form>
+    {{$products->appends(['order' => $order])->links()}}
     <div class="row">
         @foreach($products as $product)
         <div class="col-12 col-lg-6 col-xl-4">
@@ -24,13 +25,14 @@
             <div class="card mb-3 bg-primary text-light">
                 <div class="card-header">{{$product->title}}<span class="float-right">${{$product->price}}</span></div>
                 <div class="card-img py-1 bg-dark"><img class="rounded" src="{{ asset('img/products/'. $product->imageName) }}" width="100%"></div>
-                <div class="card-footer"><button class="btn btn-dark float-right"><i class="foundicon-cart"></i> Add to Cart</button></div>
-
+                <div class="card-footer"><button class="btn btn-dark float-right" onclick="event.preventDefault(); addToCart({{$product->id}}); this.toggleAttribute('disabled'); this.innerHTML='Added to Cart!'"><i class="foundicon-cart"></i> Add to Cart</button></div>
+                
             </div>
-            </a>
+        </a>
         </div>    <!--<br>{{$product->price}}<br>{{$product->sold}}<br><br> -->
         @endforeach
     </div>
+    <div class="cart"></div>
     {{$products->appends(['order' => $order])->links()}}
 </div>
 
