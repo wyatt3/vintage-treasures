@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-
+use App\Mail\Quote;
 use App\Hours;
 use App\BlogPost;
 use App\GalleryImage;
-
+use Illuminate\Support\Facades\Mail;
 class HomeController extends Controller
 {
     /**
@@ -27,7 +27,7 @@ class HomeController extends Controller
         $phoneNum = $request['phoneNumber'];
         $email = $request['email'];
         $message = $request['message'];
-        mail('vintagetreasures@gmail.com', 'Get Quote - Vintage Treasures', 'Name: ' . $name . '\n Phone Number: ' . $phoneNum . '\n Reply Email: ' . $email . '\n Message: ' . $message);
-        return redirect(route('home')->with('message', 'true'));
+        Mail::to('vintagetreasures@gmail.com')->send(new Quote($name, $phoneNum, $email, $message));
+        return redirect(route('home'))->with('message', 'true');
     }
 }

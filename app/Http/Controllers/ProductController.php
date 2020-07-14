@@ -14,6 +14,8 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        $cart = $request->session()->get('cart') ?? [];
+        $JScart = '[' . implode(', ', $cart) . ']';
         if($request['order'] == 'lth' || $request['order'] == 'htl') {
             $order = 'price';
         } else if($request['order'] == 'alphabetical') {
@@ -24,7 +26,7 @@ class ProductController extends Controller
             $by = 'asc';
         }
         $products = Product::orderBy($order ?? 'created_at', $by ?? 'desc')->paginate(9);
-        return view('shop.home', ['products' => $products, 'order' => $request['order']]);
+        return view('shop.home', ['products' => $products, 'order' => $request['order'], 'cart' => $cart, 'JScart' => $JScart]);
     }
 
     /**
@@ -54,10 +56,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($product)
+    public function show($product, Request $request)
     {
+        $cart = $request->session()->get('cart') ?? [];
+        $JScart = '[' . implode(', ', $cart) . ']';
         $product = Product::find($product);
-        return view('shop.show', ['product' => $product]);
+        return view('shop.show', ['product' => $product, 'cart' => $cart, 'JScart' => $JScart]);
     }
 
     /**
@@ -92,5 +96,31 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function setCart(Request $request) {
+        $request->session()->forget('cart');
+        foreach($request['cart'] as $product) {
+            $request->session()->push('cart', $product);
+        }
+    }
+
+    public function getCart(Request $request) {
+        $cart = $request->session()->get('cart') ?? [];
+        $JScart = '[' . implode(', ', $cart) . ']';
+        $products = [];
+        foreach($cart as $product) {
+            $prod = Product::find($product);
+            array_push($products, $prod);
+        }
+        return view('shop.cart', ['cart' => $cart, 'JScart' => $JScart, 'products' => $products]);
+    }
+
+    public function checkout(Request $request) {
+        $subtotal = $request['subtotal'];
+
+        $cart = $request->session()->get('cart') ?? [];
+        $JScart = '[' . implode(', ', $cart) . ']';
+        return view('shop.checkout', ['cart' => $cart, 'JScart' => $JScart, 'subtotal' => $subtotal]);
     }
 }

@@ -133,7 +133,7 @@
                     <label for="name">Full Name:</label>
                     <input class="form-control mb-1 form-input-light" type="text" id="name" name="name"><br>
                     <label for="phoneNum">Phone Number:</label>
-                    <input class="form-control mb-1 form-input-light" type="text" id="phoneNum" name="phoneNum"><br>
+                    <input class="form-control mb-1 form-input-light" type="text" id="phoneNum" name="phoneNumber"><br>
                     <label for="email">Email:</label>
                     <input class="form-control mb-1 form-input-light" type="text" id="email" name="email"><br>
                     <label for="message">Message:</label>

@@ -6,7 +6,7 @@ body {
 
 h1 {
     text-align: center;
-    color: #8154a5;
+    color: #9573FF;
     font-weight: 600;
     font-size: 56px;
 }
@@ -40,6 +40,10 @@ h1 {
 
 .text-gray {
     color: #888;
+}
+
+.text-red {
+    color: #ff3d3d;
 }
 
 .sectionheader hr {

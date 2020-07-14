@@ -21,18 +21,17 @@
     <div class="row">
         @foreach($products as $product)
         <div class="col-12 col-lg-6 col-xl-4">
-            <a class="text-decoration-none" href="{{ route('products.show', ['product' => $product->id]) }}">
             <div class="card mb-3 bg-primary text-light">
-                <div class="card-header">{{$product->title}}<span class="float-right">${{$product->price}}</span></div>
+                <div class="card-header">{{$product->title}} <?php if ($product->sold) { echo "<span class='text-red'>(SOLD)</span>";} ?><span class="float-right">${{$product->price}}</span></div>
+                <a class="text-decoration-none" href="{{ route('products.show', ['product' => $product->id]) }}">
                 <div class="card-img py-1 bg-dark"><img class="rounded" src="{{ asset('img/products/'. $product->imageName) }}" width="100%"></div>
-                <div class="card-footer"><button class="btn btn-dark float-right" onclick="event.preventDefault(); addToCart({{$product->id}}); this.toggleAttribute('disabled'); this.innerHTML='Added to Cart!'"><i class="foundicon-cart"></i> Add to Cart</button></div>
+                </a>
+                <div class="card-footer"><button class="btn btn-dark float-right" <?php if(in_array($product->id, $cart) || $product->sold == 1) { echo 'disabled';} ?> onclick=" addToCart({{$product->id}}); this.toggleAttribute('disabled'); this.innerHTML=cartIcon + ' In Cart'"><i class="foundicon-cart"></i><?php if(in_array($product->id, $cart)){?> In Cart<?php } else { ?> Add to Cart<?php } ?></button></div>
                 
             </div>
-        </a>
         </div>    <!--<br>{{$product->price}}<br>{{$product->sold}}<br><br> -->
         @endforeach
     </div>
-    <div class="cart"></div>
     {{$products->appends(['order' => $order])->links()}}
 </div>
 
