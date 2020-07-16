@@ -29,7 +29,7 @@
     <h2>Subtotal: $<?php echo number_format($subtotal, 2) ?></h2>
     <form action="{{ route('shop.checkout') }}" method="POST">
         @csrf
-        <input type="hidden" name="subtotal" value="<?php echo $subtotal * 100 ?>">
+        <input type="hidden" name="subtotal" value="<?php echo $subtotal; ?>">
         <input type="submit" class="btn btn-lg btn-success text-white" value="Checkout">
     </form>
     @else

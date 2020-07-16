@@ -118,9 +118,12 @@ class ProductController extends Controller
 
     public function checkout(Request $request) {
         $subtotal = $request['subtotal'];
+        $tax = $subtotal * 0.047;
+        $shipping = $subtotal > 50 ? 0 : 6; 
+        $total = number_format($subtotal + $tax + $shipping, 2);
 
         $cart = $request->session()->get('cart') ?? [];
         $JScart = '[' . implode(', ', $cart) . ']';
-        return view('shop.checkout', ['cart' => $cart, 'JScart' => $JScart, 'subtotal' => $subtotal]);
+        return view('shop.checkout', ['cart' => $cart, 'JScart' => $JScart, 'subtotal' => $subtotal, 'tax' => $tax, 'shipping' => $shipping, 'total' => $total]);
     }
 }

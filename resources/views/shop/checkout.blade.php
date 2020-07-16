@@ -1,11 +1,7 @@
 @extends('layouts.shop')
 
 @section('content')
-<?php $subtotal = $subtotal/100;
-    $tax = $subtotal * 0.047;
-    $shipping = $subtotal > 50 ? 0 : 6; 
-    $total = number_format($subtotal + $tax + $shipping, 2);
-    ?>
+<div class="createIntent"></div>
 <div class="container">
     <h1 class="text-left ml-lg-5">Checkout</h1>
     <div class="row">
@@ -23,12 +19,18 @@
                 <label for="firstName">Full Name</label>
                 <input class="form-control" type='text' id='firstName' name='firstName' placeholder="First Name"><br>
                 <input class="form-control" type='text' id='lastName' name='lastName' placeholder="Last Name"><br>
-                <label for="line1">Billing Address</label>
-                <input class="form-control" type='text' id='line1' name='line1' placeholder="Line 1"><br>
-                <input class="form-control" type='text' id='line2' name='line2' placeholder="Line 2"><br>
-                <input class="form-control" type='text' id='city' name='city' placeholder="City"><br>
-                <input class="form-control" type='text' id='state' name='state' placeholder="State"><br>
-                
+                <label for="line1s">Shipping Address</label>
+                <input class="form-control" type="text" id="line1s" name="line1s" placeholder="Line 1"><br>
+                <input class="form-control" type="text" id="" name="" placeholder="Line 2"><br>
+                <input class="form-control" type="text" id="" name="" placeholder="City"><br>
+                <input class="form-control" type="text" id="" name="" placeholder="State"><br>
+                <label for="line1">Billing Address</label><br><input class="d-inline form-check" id="same" type="checkbox"><label for="same">&nbsp;Same as shipping address</label>
+                <div id="billing">
+                    <input class="form-control" type='text' id='line1' name='line1' placeholder="Line 1"><br>
+                    <input class="form-control" type='text' id='line2' name='line2' placeholder="Line 2"><br>
+                    <input class="form-control" type='text' id='city' name='city' placeholder="City"><br>
+                    <input class="form-control" type='text' id='state' name='state' placeholder="State"><br>
+                </div>
                 <div id="card-element">
                     <!-- Elements will create input elements here -->
                 </div>
@@ -42,4 +44,9 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        createPayment({{$total}} * 100);
+});
+</script>
 @endsection
