@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Order;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderConfirmation as OrderEmail;
 
 class ProductController extends Controller
 {
@@ -120,10 +123,35 @@ class ProductController extends Controller
         $subtotal = $request['subtotal'];
         $tax = $subtotal * 0.047;
         $shipping = $subtotal > 50 ? 0 : 6; 
-        $total = number_format($subtotal + $tax + $shipping, 2);
+        $total = $subtotal + $tax + $shipping;
 
-        $cart = $request->session()->get('cart') ?? [];
+        $cart = $request->session()->get('cart');
+        if(!$cart) {
+            return redirect(route('products.index'));
+        }
         $JScart = '[' . implode(', ', $cart) . ']';
         return view('shop.checkout', ['cart' => $cart, 'JScart' => $JScart, 'subtotal' => $subtotal, 'tax' => $tax, 'shipping' => $shipping, 'total' => $total]);
+    }
+
+    public function order(request $request) {
+        $cart = $request->session()->get('cart');
+        $JScart = '[' . implode(', ', $cart) . ']';
+
+        $order = new Order;
+        $order->orderID = substr(md5(rand()), 0, 10);
+        $order->customer = $request['firstName'] . " " . $request['lastName'];
+        $order->email = $request['email'];
+        $order->products = $JScart;
+        $order->amountPayed = number_format($request['total'], 2);
+        $order->shippingAddress = $request['line1'] . " " . $request['line2'] . " " . $request['city'] . ", " . $request['state'];
+        foreach($cart as $product) {
+            $prod = Product::find($product);
+            $prod->sold = 1;
+            $prod->save();
+        }
+        $request->session()->forget('cart');
+        $order->save();
+        Mail::to($order->email)->send(new OrderEmail());
+        return redirect()->route('products.index')->with('order', 'complete');
     }
 }

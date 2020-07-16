@@ -7,6 +7,9 @@
 @section('content')
 
 <div class="container">
+    @if(Session::has('order'))
+    <div class="alert alert-success"><p class="m-0">Thank you for your order! You should recieve an email shortly with your order confirmation.</p></div>
+    @endif
     <form class="ml-sm-4 mb-4 form-inline" id="orderForm">
         @csrf
         <label for="OrderBy">Order By:</label>
@@ -21,8 +24,8 @@
     <div class="row">
         @foreach($products as $product)
         <div class="col-12 col-lg-6 col-xl-4">
-            <div class="card mb-3 bg-primary text-light">
-                <div class="card-header">{{$product->title}} <?php if ($product->sold) { echo "<span class='text-red'>(SOLD)</span>";} ?><span class="float-right">${{$product->price}}</span></div>
+            <div class="card mb-3 bg-primary text-white">
+                <div class="card-header">{{$product->title}} <?php if ($product->sold) { echo "<span class='rounded mx-2 p-2 bg-danger text-white'>(SOLD)</span>";} ?><span class="float-right">$ <?php echo number_format($product->price, 2); ?></span></div>
                 <a class="text-decoration-none" href="{{ route('products.show', ['product' => $product->id]) }}">
                 <div class="card-img py-1 bg-dark"><img class="rounded" src="{{ asset('img/products/'. $product->imageName) }}" width="100%"></div>
                 </a>

@@ -35,6 +35,9 @@ Route::get('createIntent/{total}', function($total) {
     return json_encode(array('client_secret' => $intent->client_secret));
 });
 
+Route::post('order', 'ProductController@order')->name('order');
+
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('/', function() {
         return "user";

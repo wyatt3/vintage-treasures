@@ -1,6 +1,11 @@
 @extends('layouts.shop')
 
 @section('content')
+<div class="over" id="overlay">
+        <p class="text-center">Processing...<br>
+        <span>Please don't close this window</span>
+        </p>
+    </div>
 <div class="createIntent"></div>
 <div class="container">
     <h1 class="text-left ml-lg-5">Checkout</h1>
@@ -12,19 +17,26 @@
                 <strong>Shipping:</strong>    <?php if(!$shipping) {echo "Free";} else {echo "$"; echo number_format($shipping, 2);} ?>
             </p>
             <hr>
-            <p class="text-primary text-right"><strong>Total:  ${{$total}}</strong></p>
+            <p class="text-primary text-right"><strong>Total:  $<?php echo number_format($total, 2); ?></strong></p>
         </div>
         <div class="col-12 col-lg-10">
-            <form class="form" action="#test" id="payment-form">
+            <form class="form" action="{{ route('order') }}" method="POST" id="payment-form">
+                @csrf
+                <input type="hidden" name="total" value="{{$total}}">
                 <label for="firstName">Full Name</label>
                 <input class="form-control" type='text' id='firstName' name='firstName' placeholder="First Name"><br>
                 <input class="form-control" type='text' id='lastName' name='lastName' placeholder="Last Name"><br>
+                <label for="email">Email Address</label>
+                <input class="form-control" type='text' id='email' name='email' placeholder='Email Address'>
                 <label for="line1s">Shipping Address</label>
-                <input class="form-control" type="text" id="line1s" name="line1s" placeholder="Line 1"><br>
-                <input class="form-control" type="text" id="" name="" placeholder="Line 2"><br>
-                <input class="form-control" type="text" id="" name="" placeholder="City"><br>
-                <input class="form-control" type="text" id="" name="" placeholder="State"><br>
-                <label for="line1">Billing Address</label><br><input class="d-inline form-check" id="same" type="checkbox"><label for="same">&nbsp;Same as shipping address</label>
+                <input class="form-control" type="text" id="line1s" name="line1s" placeholder="Line 1" value="test"><br>
+                <input class="form-control" type="text" id="line2s" name="line2s" placeholder="Line 2"><br>
+                <input class="form-control" type="text" id="citys" name="citys" placeholder="City"><br>
+                <input class="form-control" type="text" id="states" name="states" placeholder="State"><br>
+                <label for="line1">Billing Address</label><br>
+                <div class="custom-control custom-checkbox mb-2">
+                    <input class="d-inline custom-control-input" id="same" type="checkbox"><label class="custom-control-label" for="same">&nbsp;Same as shipping address</label>
+                </div>
                 <div id="billing">
                     <input class="form-control" type='text' id='line1' name='line1' placeholder="Line 1"><br>
                     <input class="form-control" type='text' id='line2' name='line2' placeholder="Line 2"><br>
@@ -37,16 +49,14 @@
             
                 <!-- We'll put the error messages in this element -->
                 <div id="card-errors" role="alert"></div>
-                <div class="modal-footer">
-                <button class="mt-3 btn btn-secondary" id="submit">Pay</button>
-                </div>
+                <button class="form-control mt-3 btn btn-secondary" id="form-submit">Place Order</button>
             </form>
         </div>
     </div>
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function(){
-        createPayment({{$total}} * 100);
+        createPayment(Math.round({{$total}} * 100));
 });
 </script>
 @endsection

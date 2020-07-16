@@ -8,26 +8,33 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/mytheme.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/general_foundicons.css') }}" rel="stylesheet">
 </head>
 <body>
-    <main class="pt-4 text-dark">
+    <style>
+        body {
+            background-color: #DDD;
+        }
+        h1 {
+            color: #9573FF;
+        }
+        .container {
+            margin: 25px;
+        }
+        p {
+            color: #9573FF;
+
+        }
+        .footer {
+            color: #BBB;
+            text-align: right;
+        }
+    </style>
+    <main>
         @yield('content')
     </main>
     
-    <footer class="container py-3">
-        <div class="text-right text-light">&copy; Vintage Treasures 2020</div>
+    <footer">
+        <div class="footer">&copy; Vintage Treasures 2020</div>
     </footer>
 </body>
 
