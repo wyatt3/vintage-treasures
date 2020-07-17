@@ -29,7 +29,7 @@
                 <label for="email">Email Address</label>
                 <input class="form-control" type='text' id='email' name='email' placeholder='Email Address'>
                 <label for="line1s">Shipping Address</label>
-                <input class="form-control" type="text" id="line1s" name="line1s" placeholder="Line 1" value="test"><br>
+                <input class="form-control" type="text" id="line1s" name="line1s" placeholder="Line 1"><br>
                 <input class="form-control" type="text" id="line2s" name="line2s" placeholder="Line 2"><br>
                 <input class="form-control" type="text" id="citys" name="citys" placeholder="City"><br>
                 <input class="form-control" type="text" id="states" name="states" placeholder="State"><br>

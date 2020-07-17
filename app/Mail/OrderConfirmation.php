@@ -11,14 +11,17 @@ class OrderConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $orderID;
+    public $shippingAddress;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($orderID, $shippingAddress)
     {
-        //
+        $this->orderID = $orderID;
+        $this->shippingAddress = $shippingAddress;
     }
 
     /**

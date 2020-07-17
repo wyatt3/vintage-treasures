@@ -149,9 +149,9 @@ class ProductController extends Controller
             $prod->sold = 1;
             $prod->save();
         }
-        $request->session()->forget('cart');
         $order->save();
-        Mail::to($order->email)->send(new OrderEmail());
+        Mail::to($order->email)->send(new OrderEmail($order->orderID, $order->shippingAddress));
+        $request->session()->forget('cart');
         return redirect()->route('products.index')->with('order', 'complete');
     }
 }
