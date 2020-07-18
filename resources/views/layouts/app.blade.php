@@ -72,7 +72,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right bg-primary" aria-labelledby="navbarDropdown">
-                                    <a class="nav-link text-light pl-3" href="{{ route('admin') }}">Manage</a>
+                                    <a class="nav-link text-light pl-3" href="{{ route('voyager.dashboard') }}">Manage</a>
                                     <a class="nav-link text-light pl-3" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

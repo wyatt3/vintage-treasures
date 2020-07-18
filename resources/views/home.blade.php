@@ -34,7 +34,7 @@
     </div>
 </div>
 <div id="mastMain" class="mast py-5 text-center">
-    <img class="rounded" src="{{ asset('img/MastImg.jpg') }}">
+    <img class="rounded" src="{{ asset('storage/' . setting('site.MastImg')) }}">
 </div>
 
 
@@ -47,7 +47,7 @@
             <div class="col-12 col-md-4 mb-2">
                 <a class="text-decoration-none" href="{{ route('post.show', ['id' => $post->id]) }}">
                 <div class="card bg-light">
-                    <div class="card-img-top"><img class="rounded" src="{{ asset('img/posts/' . $post->imgName) }}" width="100%"></div>
+                    <div class="card-img-top"><img class="rounded" src="{{ asset('storage/' . $post->imgName) }}" width="100%"></div>
                     <div class="card-body text-center">
                         <p class="mt-2 mb-0 text-left text-dark"><span class="text-gray">Posted on <?php echo date_format($post->created_at, 'M jS, Y') ?></span><br>{{ $post->content }}</p>
                     </div>
@@ -64,7 +64,7 @@
 <div class="container">
     <div class="row mb-3">
         @foreach($gallery as $image)
-        <div class="col-12 col-lg-6 col-xl-4 mb-3"><a data-toggle="modal" data-target="#<?php echo "galleryModal" . $image->id ?>"><img class="rounded galleryImage" src="{{asset($image->imagePath()) }}" width="100%"></a></div>
+        <div class="col-12 col-lg-6 col-xl-4 mb-3"><div style="overflow: hidden; width:350px;"><a data-toggle="modal" data-target="#<?php echo "galleryModal" . $image->id ?>"><img class="rounded galleryImage" src="{{asset('storage/' . $image->imageName) }}" height="350px"></a></div></div>
         <!------------- Gallery Modal ---------------------->
         <div class="modal fade" id="<?php echo "galleryModal" . $image->id ?>" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
@@ -73,7 +73,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
-                        <img class="rounded" src="{{asset($image->imagePath()) }}" width="100%">
+                        <img class="rounded" src="{{asset('storage/' . $image->imageName) }}" width="100%">
                     </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@
                     <h3 class="text-light">{{$product->title}}</h3>
                 </div>
                 <div class="card-img">
-                    <img src="{{ asset('img/products/'. $product->imageName) }}" height="300px" width="100%">
+                    <img src="{{ asset('storage/'. $product->imageName) }}" height="300px" width="100%">
                 </div>
                 <div class="card-body text-right">
                     <h4 class="text-light">Price: $<?php echo number_format($product->price, 2) ?></h4> <?php $subtotal += $product->price; ?>
