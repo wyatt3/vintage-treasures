@@ -13,22 +13,22 @@ class BlogPostTableSeeder extends Seeder
     public function run()
     {
         $post = new BlogPost([
-            'imgName' => 'test.jpg',
+            'imgName' => 'blog-posts\\July2020\\blogPost.png',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean faucibus volutpat odio ac pretium. Suspendisse et imperdiet urna. Sed facilisis porta purus eget varius.',
         ]);
         $post->save();
         $post = new BlogPost([
-            'imgName' => 'test.jpg',
+            'imgName' => 'blog-posts\\July2020\\blogPost.png',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean faucibus volutpat odio ac pretium. Suspendisse et imperdiet urna. Sed facilisis porta purus eget varius.',
         ]);
         $post->save();
         $post = new BlogPost([
-            'imgName' => 'test.jpg',
+            'imgName' => 'blog-posts\\July2020\\blogPost.png',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean faucibus volutpat odio ac pretium. Suspendisse et imperdiet urna. Sed facilisis porta purus eget varius.',
         ]);
         $post->save();
         $post = new BlogPost([
-            'imgName' => 'test.jpg',
+            'imgName' => 'blog-posts\\July2020\\blogPost.png',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean faucibus volutpat odio ac pretium. Suspendisse et imperdiet urna. Sed facilisis porta purus eget varius.',
         ]);
         $post->save();

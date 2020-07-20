@@ -112,3 +112,10 @@ p {
 #overlay p span {
     font-size: 25px;
 }
+
+@media(min-width:768px) {
+    .cart-img {
+        height: 300px;
+        overflow: hidden;
+    }
+}

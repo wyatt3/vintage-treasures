@@ -14,7 +14,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => __('voyager::seeders.settings.site.title'),
-                'value'        => __('voyager::seeders.settings.site.title'),
+                'value'        => 'Vintage Treasures',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 1,
@@ -22,13 +22,13 @@ class SettingsTableSeeder extends Seeder
             ])->save();
         }
 
-        $setting = $this->findSetting('site.description');
+        $setting = $this->findSetting('site.MastImg');
         if (!$setting->exists) {
             $setting->fill([
-                'display_name' => __('voyager::seeders.settings.site.description'),
-                'value'        => __('voyager::seeders.settings.site.description'),
+                'display_name' => __('voyager::seeders.settings.site.title'),
+                'value'        => 'settings/July2020/Mast.jpg',
                 'details'      => '',
-                'type'         => 'text',
+                'type'         => 'image',
                 'order'        => 2,
                 'group'        => 'Site',
             ])->save();
@@ -74,22 +74,10 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => __('voyager::seeders.settings.admin.title'),
-                'value'        => 'Voyager',
+                'value'        => 'Vintage Treasures',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 1,
-                'group'        => 'Admin',
-            ])->save();
-        }
-
-        $setting = $this->findSetting('admin.description');
-        if (!$setting->exists) {
-            $setting->fill([
-                'display_name' => __('voyager::seeders.settings.admin.description'),
-                'value'        => __('voyager::seeders.settings.admin.description_value'),
-                'details'      => '',
-                'type'         => 'text',
-                'order'        => 2,
                 'group'        => 'Admin',
             ])->save();
         }
@@ -125,7 +113,7 @@ class SettingsTableSeeder extends Seeder
                 'value'        => '',
                 'details'      => '',
                 'type'         => 'text',
-                'order'        => 1,
+                'order'        => 5,
                 'group'        => 'Admin',
             ])->save();
         }

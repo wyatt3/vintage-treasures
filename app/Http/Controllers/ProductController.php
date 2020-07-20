@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Order;
 use Illuminate\Support\Facades\Mail;
+use Config;
 use App\Mail\OrderConfirmation as OrderEmail;
+use App\Mail\AdminOrderEmail as AdminEmail;
 
 class ProductController extends Controller
 {
@@ -96,6 +98,7 @@ class ProductController extends Controller
         }
         $order->save();
         Mail::to($order->email)->send(new OrderEmail($order->orderID, $order->shippingAddress));
+        Mail::to(Config::get('constants.admin_email'))->send(new AdminEmail());
         $request->session()->forget('cart');
         return redirect()->route('products.index')->with('order', 'complete');
     }

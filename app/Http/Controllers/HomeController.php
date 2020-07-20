@@ -6,6 +6,7 @@ use App\Mail\Quote;
 use App\Hours;
 use App\BlogPost;
 use App\GalleryImage;
+use Config;
 use Illuminate\Support\Facades\Mail;
 class HomeController extends Controller
 {
@@ -27,7 +28,7 @@ class HomeController extends Controller
         $phoneNum = $request['phoneNumber'];
         $email = $request['email'];
         $message = $request['message'];
-        Mail::to('vintagetreasures@gmail.com')->send(new Quote($name, $phoneNum, $email, $message));
+        Mail::to(Config::get('constants.admin_email'))->send(new Quote($name, $phoneNum, $email, $message));
         return redirect(route('home'))->with('message', 'true');
     }
 }

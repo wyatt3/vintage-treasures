@@ -92,7 +92,7 @@
             <div class="col-12 col-lg-4 my-3">
                 <h3>Contact</h3>
                 <a class="mb-2 btn btn-dark text-light contactButton" href="tel:4353749436"><i class="foundicon-phone"></i>&nbsp;Call Now</a><br>
-                <a class="btn btn-dark text-light contactButton" href="mailto:vintagetreasures@gmail.com"><i class="foundicon-mail"></i>&nbsp;Email Us</a>
+                <a class="btn btn-dark text-light contactButton" href="mailto:{{Config::get('constants.admin_email')}}"><i class="foundicon-mail"></i>&nbsp;Email Us</a>
             </div>
             <div class="col-12 col-lg-4 my-3">
                 <h3>Address</h3>
@@ -108,7 +108,13 @@
                         {{ $hour->day }}:
                         </div>
                         <div class="col-6">
-                            <p> <?php if($hour->isOpen) { echo $hour->openTime . " - " . $hour->closeTime;} else { echo "Closed";} ?></p>
+                            <p>
+                            <?php if($hour->isOpen) {
+                                $openTime = date("g:i a", strtotime($hour->openTime));
+                                $closeTime = date("g:i a", strtotime($hour->closeTime));
+                                echo $openTime . " - " . $closeTime;
+                                } else { echo "Closed";} ?>
+                            </p>
                         </div>
                     </div>
                 @endforeach

@@ -13,7 +13,8 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user = new User([
-            'name' => 'Test User',
+            'name' => 'Wyatt Johnson',
+            'avatar' => 'users/July2020/Myuser.jpg',
             'email' => 'test@test.com',
             'password' => '$2y$10$CL4Vdn.Ex/X7xDDzOpDaEOeSIpBAkIyiVbE4W37NYXNEvArFWC2US' //123456
         ]);

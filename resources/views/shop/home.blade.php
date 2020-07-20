@@ -27,7 +27,7 @@
             <div class="card mb-3 bg-primary text-white">
                 <div class="card-header">{{$product->title}} <?php if ($product->sold) { echo "<span class='rounded mx-2 p-2 bg-danger text-white'>(SOLD)</span>";} ?><span class="float-right">$ <?php echo number_format($product->price, 2); ?></span></div>
                 <a class="text-decoration-none" href="{{ route('products.show', ['product' => $product->id]) }}">
-                <div class="card-img py-1 bg-dark"><img class="rounded" src="{{ asset('storage/'. $product->imageName) }}" width="100%"></div>
+                <div class="card-img bg-dark"><img class="rounded" src="{{ asset('storage/'. $product->imageName) }}" width="100%"></div>
                 </a>
                 <div class="card-footer"><button class="btn btn-dark float-right" <?php if(in_array($product->id, $cart) || $product->sold == 1) { echo 'disabled';} ?> onclick=" addToCart({{$product->id}}); this.toggleAttribute('disabled'); this.innerHTML=cartIcon + ' In Cart'"><i class="foundicon-cart"></i><?php if(in_array($product->id, $cart)){?> In Cart<?php } else { ?> Add to Cart<?php } ?></button></div>
                 

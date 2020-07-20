@@ -14,7 +14,7 @@ class GalleryImageTableSeeder extends Seeder
     {
         for($i=1; $i<=9; $i++) {
             $img = new GalleryImage([
-                'imageName' => strval($i) . '.jpg'
+                'imageName' => 'gallery-images\\July2020\\' . strval($i) . '.jpg'
             ]);
             $img->save();
         }

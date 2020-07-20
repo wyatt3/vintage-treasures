@@ -9,15 +9,15 @@
     @if($products)
     <div class="row"> <?php $subtotal = 0; ?>
     @foreach($products as $product)
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-md-6 col-lg-4">
             <div class="card bg-secondary mb-3">
                 <div class="card-header mt-3 text-left">
                     <h3 class="text-light">{{$product->title}}</h3>
                 </div>
-                <div class="card-img">
-                    <img src="{{ asset('storage/'. $product->imageName) }}" height="300px" width="100%">
+                <div class="card-img cart-img">
+                    <img src="{{ asset('storage/'. $product->imageName) }}" width="100%">
                 </div>
-                <div class="card-body text-right">
+                <div class="card-footer text-right">
                     <h4 class="text-light">Price: $<?php echo number_format($product->price, 2) ?></h4> <?php $subtotal += $product->price; ?>
                     <button class="btn btn-warning" onClick="removeFromCart({{$product->id}});">Remove From Cart</button>
                 </div>

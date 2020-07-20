@@ -14,7 +14,7 @@ class ProductTableSeeder extends Seeder
     {
         $product = new Product([
             'title' => 'Sold Product',
-            'imageName' => 'prodImage.jpg',
+            'imageName' => 'products\\July2020\\product.png',
             'price' => 22.99,
             'description' => 'Product Description for sold product',
             'sold' => 1,
@@ -23,7 +23,7 @@ class ProductTableSeeder extends Seeder
         for($i=1; $i <= 25; $i++) {
             $product = new Product([
                 'title' => 'Product ' . strval($i),
-                'imageName' => 'prodImage.jpg',
+                'imageName' => 'products\\July2020\\product.png',
                 'price' => $i * 3.14,
                 'description' => 'Product Description Lorem Ipsum dolor sit amet.',
                 'sold' => 0
