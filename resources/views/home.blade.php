@@ -17,7 +17,7 @@
 
 <!-------------------------- HEAD ------------------------->
 <div id="mastMobile" class="mast py-3 text-center">
-    <img src="{{ asset('img/MastImg.jpg') }}">
+    <img src="{{ asset('storage/' . setting('site.MastImg')) }}">
 </div>
 <div id="spacer" class="my-5"></div>
 <div class="container">
@@ -62,9 +62,9 @@
 <!-------------------------- GALLERY ------------------------->
 <div class="sectionheader my-2 py-2 text-center" id="gallery"><hr><h4>GALLERY</h4></div>
 <div class="container">
-    <div class="row mb-3">
+    <div class="row mb-3 text-center">
         @foreach($gallery as $image)
-        <div class="col-12 col-lg-6 col-xl-4 mb-3"><div style="overflow: hidden; width:350px;"><a data-toggle="modal" data-target="#<?php echo "galleryModal" . $image->id ?>"><img class="rounded galleryImage" src="{{asset('storage/' . $image->imageName) }}" height="350px"></a></div></div>
+        <div class="col-12 col-lg-6 col-xl-4 mb-3"><div style="overflow: hidden; width: 350px; margin: auto;"><a data-toggle="modal" data-target="#<?php echo "galleryModal" . $image->id ?>"><img class="rounded galleryImage" src="{{asset('storage/' . $image->imageName) }}" height="350px"></a></div></div>
         <!------------- Gallery Modal ---------------------->
         <div class="modal fade" id="<?php echo "galleryModal" . $image->id ?>" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">

@@ -44,3 +44,4 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('/admin/login', function() {
     return redirect()->route('login');
 })->name('voyager.login');
+Route::get('link', function() {return Artisan::call('storage:link');});
